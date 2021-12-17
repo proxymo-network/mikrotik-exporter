@@ -50,7 +50,11 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm/v7
           tags: |
-            ghcr.io/${{ github.repository }}:latest
+            ghcr.io/${{ github.repository }}:dev
+
+          build-args: |
+            BUILD_VERSION=${{ steps.build_info.outputs.version }}
+            BUILD_REF=${{ steps.build_info.outputs.ref }}
 
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
